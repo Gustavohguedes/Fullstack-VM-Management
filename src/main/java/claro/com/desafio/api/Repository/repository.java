@@ -1,14 +1,17 @@
 package claro.com.desafio.api.Repository;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface repository {
-    // Define the methods that will be implemented by the repository classes
-    void save(Object entity);
+import claro.com.desafio.api.Model.Client;
 
-    Object findById(Long id);
+public interface Repository extends CrudRepository<Client, Long> {
 
-    void delete(Long id);
+    Client findByEmail(String email);
 
-    List<Object> findAll();
+    Client findByCodigo(long codigo);
+
+    Client findByNome(String nome);
+
+    Client findBySenha(String senha);
+
 }
