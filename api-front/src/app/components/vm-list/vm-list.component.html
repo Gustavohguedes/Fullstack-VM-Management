@@ -1,0 +1,31 @@
+<div class="vm-list-container">
+    <h2>Máquinas Virtuais</h2>
+    <button class="btn-add" (click)="goToCreateVM()">Adicionar VM</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPU</th>
+          <th>RAM (MB)</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vm of vms">
+          <td>{{ vm.displayName }}</td>
+          <td>{{ vm.cpu }}</td>
+          <td>{{ vm.memory }}</td>
+          <td>{{ vm.status }}</td>
+          <td>
+            <button (click)="updateStatus(vm, 'RUNNING')">Iniciar</button>
+            <button (click)="updateStatus(vm, 'PAUSED')">Pausar</button>
+            <button (click)="updateStatus(vm, 'STOP')">Parar</button>
+            <button (click)="deleteVM(vm)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
