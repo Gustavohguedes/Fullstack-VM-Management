@@ -1,6 +1,6 @@
 .dashboard-container {
-  background-color: #1e1e2f;
-  color: #0e0b1a;
+  background-color: #4C4D7A;
+  color: #A5934B;
   padding: 2rem;
   text-align: center;
   min-height: 100vh;
@@ -22,7 +22,7 @@ p {
 }
 
 canvas {
-  background-color: #0e0b1a;
+  background-color: #4C4D7A;
   border-radius: 10px;
   padding: 10px;
 }

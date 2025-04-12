@@ -38,6 +38,11 @@ export class VmListComponent {
     }
   }
 
+  ngOnInit() {
+    const dados = localStorage.getItem('vms');
+    this.vms = dados ? JSON.parse(dados) : [];
+  }
+
   deleteVM(vm: any) {
     const confirmDelete = confirm(`Deseja excluir ${vm.displayName}?`);
     if (confirmDelete) {

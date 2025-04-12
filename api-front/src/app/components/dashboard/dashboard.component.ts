@@ -22,17 +22,51 @@ export class DashboardComponent implements AfterViewInit {
     const stopped = vms.filter(vm => vm.status === 'STOP').length;
 
     // Gráfico de Barras
+    
     new Chart("barChart", {
       type: 'bar',
       data: {
         labels: ['RUNNING', 'PAUSED', 'STOP'],
         datasets: [{
-          label: 'Running VMs' + running, 
+          label: 'Status das VMs',
           data: [running, paused, stopped],
           backgroundColor: ['#4CAF50', '#FFC107', '#F44336']
         }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const labels = ['RUNNING', 'PAUSED', 'STOP'];
+                const label = labels[context.dataIndex];
+                const value = context.raw;
+                return `${label}: ${value} máquinas`;
+              }
+            }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#000' // muda a cor dos textos do eixo X
+            }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: '#000'
+            }
+          }
+        }
       }
     });
+    
+    
 
     // Gráfico de Pizza
     const total = vms.length;
