@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './vm-list.component.html',
   styleUrl: './vm-list.component.css',
 })
+
 export class VmListComponent {
 
   vms = [
@@ -21,6 +22,10 @@ export class VmListComponent {
 
   goToCreateVM() {
     this.router.navigate(['/cadastrar-vm']);
+  }
+
+  goTodDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 
   updateStatus(vm: any, newStatus: string) {

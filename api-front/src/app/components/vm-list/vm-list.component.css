@@ -30,4 +30,34 @@
     color: white;
     margin-bottom: 1rem;
   }
+
+  .botao-direita {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+  }
+  
+  .button-dashboard button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #299bf8;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button-dashboard button:hover {
+    background-color: #1976d2;
+  }
+  
+  .button-dashboard img {
+    width: 20px;
+    height: 20px;
+  }
+  
   

@@ -1,7 +1,17 @@
 <div class="vm-list-container">
     <h2>Máquinas Virtuais</h2>
+        
     <button class="btn-add" (click)="goToCreateVM()">Adicionar VM</button>
   
+
+    <div class="botao-direita">
+        <button class="button-dashboard" (click)="goTodDashboard()">
+          <img src="assets/icons/icone-dashboard.png" alt="Dashboard" />
+          Dashboard
+        </button>      
+    </div>
+
+
     <table>
       <thead>
         <tr>

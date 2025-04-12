@@ -1,9 +1,12 @@
 import { Component, AfterViewInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  standalone: true,
+  imports: [RouterModule],
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
