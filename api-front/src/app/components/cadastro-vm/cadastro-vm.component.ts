@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { VmService, Vm } from '../../services/vm.service';
 
 @Component({
   selector: 'app-cadastro-vm',
@@ -13,34 +14,29 @@ import { FormsModule } from '@angular/forms';
 export class CadastroVmComponent {
   novaVm = {
     displayName: '',
-    memory: 0,
+    ram: 0,
     cpu: 0,
     status: 'RUNNING' // sempre inicia como RUNNING
   };
 
   erro = '';
 
-  constructor(private router: Router) {}
+  constructor(private vmService: VmService, private router: Router) {}
+
+  listVms() {
+    this.router.navigate(['/list-vms']);
+  }
 
   cadastrarVm() {
-    const vms = JSON.parse(localStorage.getItem('vms') || '[]');
-
-    if (vms.length >= 10) {
-      this.erro = 'Limite de 5 máquinas virtuais atingido!';
-      return;
-    }
-
-    if (this.novaVm.displayName.length < 5) {
-      this.erro = 'O nome precisa ter no mínimo 5 caracteres.';
-      return;
-    }
-
-    vms.push(this.novaVm);
-    localStorage.setItem('vms', JSON.stringify(vms));
-    this.router.navigate(['/']);
+    this.vmService.createVm(this.novaVm).subscribe({
+      next: () => {
+        alert("Máquina virtual criada com sucesso!");
+        this.router.navigate(['/list-vms']);
+      },
+      error: (err) => {        
+        this.erro = err.error || 'Erro ao criar a máquina virtual.';
+      }
+    })
   }
-
-  voltar() {
-    this.router.navigate(['/']);
-  }
+ 
 }

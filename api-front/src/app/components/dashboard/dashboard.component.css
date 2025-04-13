@@ -1,6 +1,6 @@
 .dashboard-container {
   background-color: #4C4D7A;
-  color: #A5934B;
+  color: #FFD021;
   padding: 2rem;
   text-align: center;
   min-height: 100vh;
@@ -25,4 +25,11 @@ canvas {
   background-color: #4C4D7A;
   border-radius: 10px;
   padding: 10px;
+}
+
+.button-list {
+  margin: 0 5px;
+  padding: 0.4rem 1rem;
+  border: none;
+  cursor: pointer;
 }

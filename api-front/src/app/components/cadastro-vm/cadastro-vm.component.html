@@ -1,20 +1,28 @@
-<div class="form-container">
-    <h2>Cadastro de Máquina Virtual</h2>
-  
-    <form (ngSubmit)="cadastrarVm()">
-      <label>Nome:</label>
-      <input type="text" [(ngModel)]="novaVm.displayName" name="nome" required minlength="5" />
-  
-      <label>Memória (MB):</label>
-      <input type="number" [(ngModel)]="novaVm.memory" name="memoria" required />
-  
-      <label>CPU:</label>
-      <input type="number" [(ngModel)]="novaVm.cpu" name="cpu" required />
-  
-      <button type="submit">Cadastrar</button>
-      <button type="button" (click)="voltar()">Voltar</button>
-    </form>
-  
-    <p *ngIf="erro" style="color:red">{{ erro }}</p>
-  </div>
-  
+<div class="login-container">
+  <h2>Cadastro de Máquina Virtual</h2>
+
+  <form class="form" (ngSubmit)="cadastrarVm()">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input id="nome" type="text" [(ngModel)]="novaVm.displayName" name="nome" required />
+    </div>
+
+    <div class="form-group">
+      <label for="memoria">Memória (MB):</label>
+      <input id="memoria" type="number" [(ngModel)]="novaVm.ram" name="memoria" required />
+    </div>
+
+    <div class="form-group">
+      <label for="cpu">CPU:</label>
+      <input id="cpu" type="number" [(ngModel)]="novaVm.cpu" name="cpu" required />
+    </div>
+
+   
+    <button type="submit">Cadastrar</button>
+    <button type="button" class="btn-voltar" (click)="listVms()">Voltar</button>
+
+    <div *ngIf="erro" class="error-message">
+      {{ erro }}
+    </div>
+  </form>
+</div>

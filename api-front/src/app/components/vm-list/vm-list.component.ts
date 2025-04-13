@@ -23,7 +23,7 @@ export class VmListComponent implements OnInit {
   }
 
   goToCreateVM() {
-    this.router.navigate(['/cadastrar-vm']);
+    this.router.navigate(['/register-vm']);
   }
 
   goTodDashboard() {
@@ -35,20 +35,50 @@ export class VmListComponent implements OnInit {
       'RUNNING': ['PAUSED', 'STOP'],
       'PAUSED': ['STOP', 'RUNNING'],
       'STOP': ['RUNNING']
-    };
+    };    
 
     if (validTransitions[vm.status as keyof typeof validTransitions].includes(newStatus)) {
-      vm.status = newStatus;
-      alert(`Ação: Alterado para ${newStatus}`);
+      const updatedVm = { ...vm, status: newStatus};
+
+      this.vmService.updateVm(updatedVm).subscribe({
+        next: () => {
+          vm.status = newStatus;
+          alert(`Máquina ${vm.displayName} atualizada para ${newStatus}`);
+        },
+        error: () => {
+          alert("Erro ao atualizar a máquina virtual.");
+        }
+      });
     } else {
       alert("Transição inválida.");
     }
   }
 
+  carregaVms() {
+    this.vmService.getAllVms().subscribe(data => {
+      this.vms = data;
+    });
+  }
+
   deleteVM(vm: Vm) {
-    const confirmDelete = confirm(`Deseja excluir ${vm.displayName}?`);
-    if (confirmDelete) {
-      this.vms = this.vms.filter(v => v !== vm);
+    if (vm.codigo === undefined) {
+      alert("Erro: VM sem código.");
+      return;
+    }
+  
+    if (confirm("Você tem certeza que deseja excluir esta máquina virtual?")) {
+      this.vmService.deleteVm(vm.codigo).subscribe({
+        next: (res) => {
+          alert(res.mensagem); 
+          this.carregaVms(); 
+        },
+        error: (err) => {
+          console.error('Erro ao excluir VM:', err);
+          alert(typeof err.error === 'string' ? err.error : 'Erro ao excluir a máquina virtual.');
+        }
+      });
     }
   }
+  
+  
 }

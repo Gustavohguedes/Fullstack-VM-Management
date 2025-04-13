@@ -1,4 +1,4 @@
-<div class="vm-list-container">
+<div class="vm-list-container">  
     <h2>Máquinas Virtuais</h2>
         
     <button class="btn-add" (click)="goToCreateVM()">Adicionar VM</button>
@@ -26,7 +26,7 @@
         <tr *ngFor="let vm of vms">
           <td>{{ vm.displayName }}</td>
           <td>{{ vm.cpu }}</td>
-          <td>{{ vm.memory }}</td>
+          <td>{{ vm.ram }}</td>
           <td>{{ vm.status }}</td>
           <td>
             <button (click)="updateStatus(vm, 'RUNNING')">Iniciar</button>
