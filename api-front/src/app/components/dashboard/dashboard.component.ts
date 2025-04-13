@@ -1,31 +1,38 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { VmService, Vm } from '../../services/vm.service';
 import Chart from 'chart.js/auto';
-import { RouterModule } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: true,
-  imports: [RouterModule],
+  imports: [],
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
 
+  vms: Vm[] = [];
+
+  constructor(private router: Router, private vmService: VmService) {}
+
   ngAfterViewInit(): void {
-    // Dados simulados — em breve vamos conectar com o back-end
-    const vms = [
-      { displayName: "vm1", cpu: 2, memory: 1024, status: "RUNNING" },
-      { displayName: "vm2", cpu: 1, memory: 512, status: "PAUSED" },
-      { displayName: "vm3", cpu: 4, memory: 2048, status: "STOP" },
-      { displayName: "vm4", cpu: 2, memory: 1024, status: "RUNNING" },
-    ];
+    this.vmService.getAllVms().subscribe(data => {
+      this.vms = data;
+      this.renderCharts();
+    });
+  }
 
-    const running = vms.filter(vm => vm.status === 'RUNNING').length;
-    const paused = vms.filter(vm => vm.status === 'PAUSED').length;
-    const stopped = vms.filter(vm => vm.status === 'STOP').length;
+  //navegação
+  goTodListVm() {
+    this.router.navigate(['/list-vms']);
+  }
 
-    // Gráfico de Barras
-    
+  renderCharts() {
+    const running = this.vms.filter(vm => vm.status === 'RUNNING').length;
+    const paused = this.vms.filter(vm => vm.status === 'PAUSED').length;
+    const stopped = this.vms.filter(vm => vm.status === 'STOP').length;
+
     new Chart("barChart", {
       type: 'bar',
       data: {
@@ -49,37 +56,17 @@ export class DashboardComponent implements AfterViewInit {
               }
             }
           },
-          legend: {
-            display: false
-          }
-        },
-        scales: {
-          x: {
-            ticks: {
-              color: '#000' // muda a cor dos textos do eixo X
-            }
-          },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: '#000'
-            }
-          }
+          legend: { display: false }
         }
       }
     });
-    
-    
 
-    // Gráfico de Pizza
-    const total = vms.length;
-    const limite = 5;
     new Chart("pieChart", {
       type: 'pie',
       data: {
         labels: ['VMs Cadastradas', 'Vagas Restantes'],
         datasets: [{
-          data: [total, limite - total],
+          data: [this.vms.length, 5 - this.vms.length],
           backgroundColor: ['#2196F3', '#9E9E9E']
         }]
       }

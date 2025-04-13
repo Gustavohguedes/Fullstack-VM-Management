@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VmService, Vm } from '../../services/vm.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -9,16 +10,17 @@ import { CommonModule } from '@angular/common';
   templateUrl: './vm-list.component.html',
   styleUrl: './vm-list.component.css',
 })
+export class VmListComponent implements OnInit {
 
-export class VmListComponent {
+  vms: Vm[] = [];
 
-  vms = [
-    { displayName: "vm1", cpu: 2, memory: 1024, status: "RUNNING" },
-    { displayName: "vm2", cpu: 1, memory: 512, status: "PAUSED" },
-    { displayName: "vm3", cpu: 4, memory: 2048, status: "STOP" }
-  ];
+  constructor(private router: Router, private vmService: VmService) {}
 
-  constructor(private router: Router) {}
+  ngOnInit() {
+    this.vmService.getAllVms().subscribe(data => {
+      this.vms = data;
+    });
+  }
 
   goToCreateVM() {
     this.router.navigate(['/cadastrar-vm']);
@@ -28,7 +30,7 @@ export class VmListComponent {
     this.router.navigate(['/dashboard']);
   }
 
-  updateStatus(vm: any, newStatus: string) {
+  updateStatus(vm: Vm, newStatus: string) {
     const validTransitions = {
       'RUNNING': ['PAUSED', 'STOP'],
       'PAUSED': ['STOP', 'RUNNING'],
@@ -43,16 +45,10 @@ export class VmListComponent {
     }
   }
 
-  ngOnInit() {
-    const dados = localStorage.getItem('vms');
-    this.vms = dados ? JSON.parse(dados) : [];
-  }
-
-  deleteVM(vm: any) {
+  deleteVM(vm: Vm) {
     const confirmDelete = confirm(`Deseja excluir ${vm.displayName}?`);
     if (confirmDelete) {
       this.vms = this.vms.filter(v => v !== vm);
     }
   }
 }
-

@@ -15,7 +15,7 @@ public class VirtualMachineControle {
     @Autowired
     private VirtualMachineRepositorio virtualMachineServico;
 
-    @GetMapping("/virtualmachines")
+    @GetMapping("/api/vm")
     public Iterable<VirtualMachine> listar() {
         return virtualMachineServico.findAll();
     }
