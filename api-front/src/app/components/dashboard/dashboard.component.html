@@ -2,16 +2,21 @@
   
     <h1>Bem-vindo ao Portal de Gestão de Máquinas Virtuais</h1>
     <h3>Gerencie e monitore o status das suas máquinas virtuais de forma intuitiva e rápida.</h3>
-  
-
+    
+   
       <button class="button-list" (click)="goTodListVm()">Verificar Maquinas</button>
+      <button class="button-logout" (click)="logout()">LOGOUT</button>
+   
+
+
+    <div class="chart">
+      <h3>Status das Máquinas Virtuais</h3>
+      <canvas id="barChart"></canvas>
+    </div>
     
 
     <div class="charts">
-      <div class="chart">
-        <h3>Status das Máquinas Virtuais</h3>
-        <canvas id="barChart"></canvas>
-      </div>
+      
       
       <div class="chart">
         <h3>Uso do Limite de Máquinas</h3>

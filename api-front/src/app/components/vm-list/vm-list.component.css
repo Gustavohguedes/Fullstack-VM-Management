@@ -36,12 +36,36 @@
     justify-content: flex-end;
     margin: 20px;
   }
+
+  .button-running {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
   
-  .button-dashboard button {
+  .button-paused {
+    background-color: #FF9800;
+    color: white;
+    border: none;
+  }
+
+  .button-stop {
+    background-color: #F44336;
+    color: white;
+    border: none;
+  }
+
+  .button-delete {
+    background-color: #FF5722;
+    color: white;
+    border: none;
+  }
+  
+  .button-dashboard {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #299bf8;
+    background-color: #2196F3;
     color: white;
     border: none;
     padding: 10px 16px;
@@ -52,7 +76,7 @@
   }
   
   .button-dashboard button:hover {
-    background-color: #1976d2;
+    background-color: #2196F3;
   }
   
   .button-dashboard img {

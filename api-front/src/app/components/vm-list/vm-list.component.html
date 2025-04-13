@@ -29,10 +29,10 @@
           <td>{{ vm.ram }}</td>
           <td>{{ vm.status }}</td>
           <td>
-            <button (click)="updateStatus(vm, 'RUNNING')">Iniciar</button>
-            <button (click)="updateStatus(vm, 'PAUSED')">Pausar</button>
-            <button (click)="updateStatus(vm, 'STOP')">Parar</button>
-            <button (click)="deleteVM(vm)">Excluir</button>
+            <button class="button-running" (click)="updateStatus(vm, 'RUNNING')">Iniciar</button>
+            <button class="button-paused" (click)="updateStatus(vm, 'PAUSED')">Pausar</button>
+            <button class="button-stop" (click)="updateStatus(vm, 'STOP')">Parar</button>
+            <button class="button-delete" (click)="deleteVM(vm)">Excluir</button>
           </td>
         </tr>
       </tbody>

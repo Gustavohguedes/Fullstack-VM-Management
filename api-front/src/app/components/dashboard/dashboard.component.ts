@@ -27,6 +27,9 @@ export class DashboardComponent implements AfterViewInit {
   goTodListVm() {
     this.router.navigate(['/list-vms']);
   }
+  logout() {
+    this.router.navigate(['/']);
+  }
 
   renderCharts() {
     const running = this.vms.filter(vm => vm.status === 'RUNNING').length;
@@ -71,5 +74,6 @@ export class DashboardComponent implements AfterViewInit {
         }]
       }
     });
+    
   }
 }
