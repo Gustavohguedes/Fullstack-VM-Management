@@ -35,7 +35,7 @@ Este projeto é uma aplicação web fullstack para cadastro, listagem e monitora
 - Angular 17
 - TypeScript
 - SCSS/CSS
-- Chart.js (para gráficos)
+- Chart.js
 
 ### Backend
 - Java 17+
@@ -49,23 +49,45 @@ Este projeto é uma aplicação web fullstack para cadastro, listagem e monitora
 ## ⚙️ Como Executar o Projeto
 
 ### 📌 Pré-requisitos
-- Node.js (versão 18 ou superior)
-- Angular CLI (`npm install -g @angular/cli`)
-- Java JDK 17+
-- MySQL 8+
-- Maven
 
----
-
-### 🖥️ Backend (Spring Boot)
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repo.git
-   cd seu-repo/api
+- Node.js (versão 17)
+- Angular CLI 17:
+  ```bash
+  npm install -g @angular/cli@17
 
 
-### Executando Banco de dados
+# 🖥️ Backend (Spring Boot)
 
-Caso esteja usando o vs code utilize a extensão mysql : https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2
-configure a conexão com os dados no caminho src/main/resources/application.properties
+git clone https://github.com/seu-usuario/seu-repo.git
+cd seu-repo
+
+
+# Configure o banco de dados
+Abra o arquivo:
+
+api/src/main/resources/application.properties
+
+### E edite com os seus dados de conexão do MySQL:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/projeto_desafio
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.hibernate.ddl-auto=update
+
+## Execute a aplicação principal do backend:
+No VS Code, IntelliJ ou Eclipse, execute o arquivo:
+
+api/src/main/java/br/com/projeto/api/ApiApplication.java
+
+# 🌐 Frontend (Angular)
+
+cd api-front
+
+## Instale as dependências:
+npm install
+
+## Inicie a aplicação:
+npm start
+
+### Acessando no navegador:
+[local](http://localhost:4200)
