@@ -59,6 +59,8 @@ Este projeto é uma aplicação web fullstack para cadastro, listagem e monitora
 # 🖥️ Backend (Spring Boot)
 
 git clone https://github.com/seu-usuario/seu-repo.git
+```markdown
+<br>
 cd seu-repo
 
 
@@ -69,10 +71,14 @@ api/src/main/resources/application.properties
 
 ### E edite com os seus dados de conexão do MySQL:
 
-spring.datasource.url=jdbc:mysql://localhost:3306/projeto_desafio
-spring.datasource.username=root
-spring.datasource.password=root
-spring.jpa.hibernate.ddl-auto=update
+```markdown
+spring.datasource.url=jdbc:mysql://localhost:3306/projeto_desafio  
+<br>
+spring.datasource.username=root  
+<br>
+spring.datasource.password=root  
+<br>
+spring.jpa.hibernate.ddl-auto=update 
 
 ## Execute a aplicação principal do backend:
 No VS Code, IntelliJ ou Eclipse, execute o arquivo:
